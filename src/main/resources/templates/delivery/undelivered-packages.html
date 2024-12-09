@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Undelivered Packages</title>
+</head>
+<body>
+<h1>Undelivered Packages for Delivery ID: <span th:text="${delivery.id}"></span></h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Package ID</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pkg : ${undeliveredPackages}">
+        <td th:text="${pkg.id}"></td>
+        <td th:text="${pkg.status}"></td>
+        <td>
+            <form action="/delivery/store-undelivered-package" method="post">
+                <input type="hidden" name="packageId" th:value="${pkg.id}">
+                <input type="hidden" name="deliveryId" th:value="${delivery.id}">
+                <button type="submit">Store</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

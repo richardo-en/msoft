@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery Dashboard</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<h1>Delivery Dashboard</h1>
+<form action="/delivery/create-delivery" method="post">
+    <table>
+        <thead>
+        <tr>
+            <th>Package ID</th>
+            <th>Status</th>
+            <th>Delivery Address</th>
+            <th>Weight</th>
+            <th>Select</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="package : ${storedPackages}">
+            <td th:text="${package.id}"></td>
+            <td th:text="${package.status}"></td>
+            <td th:text="${package.deliveryAddress}"></td>
+            <td th:text="${package.weight}"></td>
+            <td>
+                <input type="checkbox" name="selectedPackages" th:value="${package.id}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit">Submit Packages</button>
+</form>
+</body>
+</html>

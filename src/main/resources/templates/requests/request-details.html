@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Details</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<h1>Request Details</h1>
+<p><strong>Sender:</strong> <span th:text="${request.senderName}"></span></p>
+<p><strong>Address:</strong> <span th:text="${request.senderAddress}"></span></p>
+<p><strong>Contact:</strong> <span th:text="${request.senderContact}"></span></p>
+<p><strong>Total Amount:</strong> <span th:text="${request.totalAmount} + ' €'"></span></p>
+
+<h2>Approval Form</h2>
+<form th:action="@{/requests/approve}" method="post">
+    <input type="hidden" name="requestId" th:value="${request.id}" />
+    <label for="warehouseLocation">Warehouse Location:</label>
+    <input type="text" id="warehouseLocation" name="warehouseLocation" required /><br>
+    <label for="deliveryDates">Delivery Dates (Range):</label>
+    <input type="text" id="deliveryDates" name="deliveryDates" required /><br>
+    <button type="submit">Approve</button>
+</form>
+
+<h2>Rejection Form</h2>
+<form th:action="@{/requests/reject}" method="post">
+    <input type="hidden" name="requestId" th:value="${request.id}" />
+    <label for="rejectionReason">Rejection Reason:</label>
+    <textarea id="rejectionReason" name="rejectionReason" minlength="5" required></textarea><br>
+    <button type="submit">Reject</button>
+</form>
+</body>
+</html>

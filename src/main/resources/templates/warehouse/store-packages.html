@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Store Packages</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<h1>Store Packages</h1>
+<div th:if="${temporaryPackages}">
+  <table>
+    <thead>
+    <tr>
+      <th>Package ID</th>
+      <th>Warehouse Location</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="package : ${temporaryPackages}">
+      <td th:text="${package.id}"></td>
+      <td th:text="${package.warehouseLocation}"></td>
+      <td>
+        <form action="/warehouse/store-package" method="post">
+          <input type="hidden" name="packageId" th:value="${package.id}">
+          <button type="submit">Store</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div th:if="${#lists.isEmpty(temporaryPackages)}">
+  <p>No temporary packages available to store.</p>
+  <a href="/warehouse/enter-uid">Back to UID Entry</a>
+</div>
+</body>
+</html>

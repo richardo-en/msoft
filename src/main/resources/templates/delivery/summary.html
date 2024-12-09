@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivery Summary</title>
+</head>
+<body>
+<h1>Delivery Summary</h1>
+
+<p th:text="'Delivery ID: ' + ${delivery.id}"></p>
+<p th:text="'Delivery Date: ' + ${delivery.deliveryDate}"></p>
+
+<h2>Packages</h2>
+<ul>
+  <li th:each="package : ${delivery.packages}">
+    <span th:text="'Package ID: ' + ${package.id}"></span>
+    <span th:text="' | Address: ' + ${package.deliveryAddress}"></span>
+    <span th:text="' | Weight: ' + ${package.weight}"></span>
+  </li>
+</ul>
+
+<a href="/delivery/dashboard">Back to Dashboard</a>
+</body>
+</html>

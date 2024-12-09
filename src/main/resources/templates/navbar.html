@@ -1,0 +1,15 @@
+<div th:fragment="navbar">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/requests/choose-recipients">Create Request</a></li>
+            <li><a href="/requests">Yours Requests</a></li>
+            <li><a href="/requests/overview">Overview</a></li>
+            <li><a href="/warehouse/">Warehouse</a></li>
+            <li><a href="/delivery/">Planning</a></li>
+            <li th:if="${session.loggedInUser != null}">
+                <a href="/logout">Logout</a>
+            </li>
+        </ul>
+    </nav>
+</div>

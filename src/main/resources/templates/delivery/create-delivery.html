@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Delivery</title>
+</head>
+<body>
+<h1>Create Delivery</h1>
+
+<form action="/delivery/submit-delivery" method="post">
+    <label for="deliveryDate">Delivery Date:</label>
+    <input type="date" id="deliveryDate" name="deliveryDate" required>
+    <br><br>
+    <label for="deliveryStartTime">Start Time:</label>
+    <input type="time" id="deliveryStartTime" name="deliveryStartTime" required>
+    <br><br>
+    <label for="estimatedDuration">Estimated Duration (hours):</label>
+    <input type="number" id="estimatedDuration" name="estimatedDuration" min="1" required>
+    <br><br>
+
+    <h2>Selected Packages</h2>
+    <ul>
+        <li th:each="package : ${selectedPackages}">
+            <input type="hidden" name="packageIds" th:value="${package.id}">
+            <span th:text="'Package ID: ' + ${package.id}"></span>
+            <span th:text="' | Address: ' + ${package.deliveryAddress}"></span>
+            <span th:text="' | Weight: ' + ${package.weight}"></span>
+        </li>
+    </ul>
+
+    <br>
+    <button type="submit">Submit Delivery</button>
+</form>
+</body>
+</html>

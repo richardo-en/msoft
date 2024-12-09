@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Save Packages</title>
+</head>
+<body>
+<h1>Save Packages</h1>
+<div th:if="${temporaryPackages}">
+    <table>
+        <thead>
+        <tr>
+            <th>Package ID</th>
+            <th>Status</th>
+            <th>Delivery Address</th>
+            <th>Warehouse Location</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="package : ${temporaryPackages}">
+            <td th:text="${package.id}"></td>
+            <td th:text="${package.status}"></td>
+            <td th:text="${package.deliveryAddress}"></td>
+            <td th:text="${package.warehouseLocation}"></td>
+            <td>
+                <form action="/warehouse/remove-package" method="post">
+                    <input type="hidden" name="packageId" th:value="${package.id}">
+                    <button type="submit">Save Package</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${#lists.isEmpty(temporaryPackages)}">
+    <p>No temporary packages available to save.</p>
+    <a href="/warehouse/enter-uid">Back to Enter UID</a>
+</div>
+</body>
+</html>

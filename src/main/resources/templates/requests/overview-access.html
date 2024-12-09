@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Overview</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<h1>Enter Access Name</h1>
+<form th:action="@{/requests/overview-access}" method="post">
+    <input type="text" name="accessName" placeholder="Access Name" required />
+    <button type="submit">Submit</button>
+</form>
+<p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+</body>
+</html>

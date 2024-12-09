@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Recipients</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<h1>Choose the Number of Recipients</h1>
+<form action="/requests/choose-recipients" method="post">
+    <label for="recipientsCount">Number of Recipients:</label>
+    <input type="number" id="recipientsCount" name="recipientsCount" min="1" required>
+    <button type="submit">Next</button>
+</form>
+</body>
+</html>

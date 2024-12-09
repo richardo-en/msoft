@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Deliver Packages</title>
+</head>
+<body>
+<h1>Deliver Packages</h1>
+
+<h2>Delivery ID: <span th:text="${delivery.id}"></span></h2>
+<h3>Vehicle: <span th:text="${delivery.assignedVehicle}"></span></h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Package ID</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pkg : ${packagesToDeliver}">
+        <td th:text="${pkg.id}"></td>
+        <td th:text="${pkg.status}"></td>
+        <td>
+            <form action="/delivery/update-package-status" method="post">
+                <input type="hidden" name="packageId" th:value="${pkg.id}">
+                <input type="hidden" name="deliveryId" th:value="${delivery.id}">
+                <button type="submit" name="status" value="Delivered">Delivered</button>
+                <button type="submit" name="status" value="Not Delivered">Not Delivered</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
