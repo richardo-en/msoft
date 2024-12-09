@@ -28,6 +28,8 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+!src/main/java/org/example/deliverysystem/**/*
+!src/main/resources/templates/**/*
+*.iml
 ### VS Code ###
 .vscode/
